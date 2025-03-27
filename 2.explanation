@@ -1,0 +1,147 @@
+Here is a **detailed line-by-line explanation** of the provided code:  
+
+---
+
+## **HTML Structure Explanation**  
+
+### **1. `<!DOCTYPE html>`**  
+- Declares the document type as **HTML5**, ensuring the browser correctly interprets the document.  
+- `<!DOCTYPE>` is a **predefined** declaration in HTML.  
+
+### **2. `<html lang="en">`**  
+- Starts the HTML document.  
+- `lang="en"` specifies the **language** as English for accessibility and SEO.  
+
+### **3. `<head>`**  
+- Contains metadata (information about the document).  
+
+### **4. `<meta charset="UTF-8">`**  
+- Defines the character encoding as **UTF-8**, which supports special characters and symbols.  
+- Predefined in HTML.  
+
+### **5. `<title>Number to Words</title>`**  
+- Sets the browser tab title to **"Number to Words"**.  
+
+---
+
+## **JavaScript Explanation**  
+
+### **6. `<script>`**  
+- Starts the JavaScript section inside the `<head>`.  
+
+### **7. `function numberToWords(num) {`**  
+- Defines a **function** named `numberToWords` that converts a number to words.  
+- `num` is a **parameter** representing the input number.  
+
+### **8. `if (isNaN(num)) return "Not a number";`**  
+- `isNaN(num)`: **Checks** if `num` is **not a number**.  
+- If `num` is not a valid number, it returns `"Not a number"` immediately.  
+- `isNaN()` is a **predefined JavaScript function**.  
+
+### **9. `num = parseInt(num);`**  
+- Converts `num` into an **integer** using `parseInt()`.  
+- `parseInt()` is a predefined function that removes decimals or non-numeric characters.  
+
+### **10. `if (num < 0 || num > 999) return "Out of range";`**  
+- Checks if `num` is **outside** the **valid range (0-999)**.  
+- If true, it returns `"Out of range"` and stops further execution.  
+
+---
+
+### **11. `const ones = ["", "One", "Two", ... , "Nine"];`**  
+- An **array** containing **word representations** of digits (0-9).  
+- The first element is an empty string (`""`) to handle cases where `num % 10` is **0**.  
+
+### **12. `const teens = ["Eleven", "Twelve", ..., "Nineteen"];`**  
+- An **array** storing **numbers from 11 to 19**, as they follow a different naming pattern.  
+
+### **13. `const tens = ["", "Ten", "Twenty", ..., "Ninety"];`**  
+- An **array** storing multiples of ten (10, 20, ..., 90).  
+
+---
+
+### **14. `if (num === 0) return "Zero";`**  
+- Directly returns `"Zero"` if the input is `0`.  
+
+### **15. `let words = num >= 100 ? ones[Math.floor(num / 100)] + " Hundred " : "";`**  
+- Checks if `num` is **100 or more**.  
+- If true, it finds the **hundreds place** using `Math.floor(num / 100)`.  
+- Example: `345 → Math.floor(345 / 100) → 3` (so, `"Three Hundred "`).  
+- Uses the **ternary operator** (`? :`) for **concise conditional assignment**.  
+
+---
+
+### **16. `num %= 100;`**  
+- Extracts the **last two digits** (tens and ones) after handling hundreds.  
+- Example: `345 % 100 → 45`.  
+
+---
+
+### **17. `words += num >= 11 && num <= 19 ? teens[num - 11] : tens[Math.floor(num / 10)] + " " + ones[num % 10];`**  
+- If `num` is between **11 and 19**, it picks the correct word from the `teens` array.  
+- Otherwise, it constructs words using:  
+  - `tens[Math.floor(num / 10)]`: Gets the **tens place**.  
+  - `ones[num % 10]`: Gets the **ones place**.  
+
+---
+
+### **18. `return words.trim();`**  
+- `trim()` removes **extra spaces** at the start or end of the generated words.  
+
+---
+
+### **19. `function convert() {`**  
+- Defines another function called `convert()`, which is triggered when the user clicks the **Convert** button.  
+
+### **20. `document.getElementById("output").value = numberToWords(document.getElementById("input").value);`**  
+- Fetches the **input value** from the text field with `id="input"`.  
+- Calls `numberToWords()` to **convert the number into words**.  
+- Displays the **result** in the text field with `id="output"`.  
+- `document.getElementById()` is a **predefined JavaScript function**.  
+
+---
+
+## **HTML Body Structure Explanation**  
+
+### **21. `<body>`**  
+- The main **visible** content of the page.  
+
+### **22. `<input type="text" id="input" placeholder="Enter number (0-999)">`**  
+- Creates a **text field** for number input.  
+- `id="input"` uniquely identifies it for JavaScript.  
+- `placeholder="Enter number (0-999)"` gives a **hint** inside the text field.  
+
+---
+
+### **23. `<button onclick="convert()">Convert</button>`**  
+- Creates a button labeled **"Convert"**.  
+- `onclick="convert()"` runs the `convert()` function when clicked.  
+
+---
+
+### **24. `<input type="text" id="output" readonly placeholder="Result">`**  
+- Creates a **readonly** text field to display the result.  
+- `readonly` ensures users **cannot modify** the result manually.  
+
+---
+
+### **25. `</body>` & `</html>`**  
+- Closes the HTML body and document.  
+
+---
+
+## **Final Insights**  
+- **Predefined Functions Used:** `isNaN()`, `parseInt()`, `Math.floor()`, `trim()`, `getElementById()`.  
+- **Validations Handled:**  
+  - Checks if the input is a number.  
+  - Checks if it’s within the valid range.  
+  - Displays appropriate messages for errors.  
+
+### **How to Execute the Code?**  
+1. **Copy the code** into a `.html` file (e.g., `number_to_words.html`).  
+2. **Open it in any modern browser** (Chrome, Firefox, Edge).  
+3. **Enter a number** and click **Convert**.  
+
+---
+
+This breakdown ensures a **clear, in-depth** understanding of the **purpose, functionality, and predefined components** used in the code. 🚀
