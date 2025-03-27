@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Analyzer</title>
+    <script>
+        function analyzeText() {
+            let text = document.getElementById("inputText").value;
+            alert(`Characters: ${text.length}\nWords: ${text.trim() ? text.trim().split(/\s+/).length : 0}\nLines: ${text.split(/\n/).length}`);
+        }
+    </script>
+</head>
+<body>
+    <textarea id="inputText" rows="5" cols="40" placeholder="Enter text..."></textarea><br>
+    <button onclick="analyzeText()">Submit</button>
+</body>
+</html>
