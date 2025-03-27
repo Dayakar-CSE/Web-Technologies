@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number to Words</title>
+    <script>
+        function numberToWords(num) {
+            if (isNaN(num)) return "Not a number";
+            num = parseInt(num);
+            if (num < 0 || num > 999) return "Out of range";
+
+            const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+            const teens = ["Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+            const tens = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+            if (num === 0) return "Zero";
+            let words = num >= 100 ? ones[Math.floor(num / 100)] + " Hundred " : "";
+            num %= 100;
+            words += num >= 11 && num <= 19 ? teens[num - 11] : tens[Math.floor(num / 10)] + " " + ones[num % 10];
+            return words.trim();
+        }
+
+        function convert() {
+            document.getElementById("output").value = numberToWords(document.getElementById("input").value);
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Enter number (0-999)">
+    <button onclick="convert()">Convert</button>
+    <input type="text" id="output" readonly placeholder="Result">
+</body>
+</html>
