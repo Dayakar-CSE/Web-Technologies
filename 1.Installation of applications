@@ -1,0 +1,226 @@
+Here is a step-by-step guide to installing and configuring the required components on your Windows machine.
+
+1. Install Apache Web Server
+Apache is a widely used web server that allows you to host and serve web applications.
+
+Steps to Install Apache:
+Download Apache
+
+Go to the official Apache Lounge website: https://www.apachelounge.com/download/
+
+Download the latest Win64 version.
+
+Extract and Install
+
+Extract the downloaded ZIP file (e.g., httpd-2.4.57-win64-VS16.zip).
+
+Move the extracted folder to C:\Apache24 (recommended location).
+
+Configure Apache
+
+Open the conf directory inside C:\Apache24 (C:\Apache24\conf\httpd.conf).
+
+Open httpd.conf in a text editor (Notepad++ or VS Code).
+
+Find the line:
+
+mathematica
+Copy
+Edit
+Listen 80
+Change it if needed (e.g., Listen 8080 to avoid conflicts).
+
+Start Apache
+
+Open Command Prompt (Admin) and run:
+
+sh
+Copy
+Edit
+cd C:\Apache24\bin
+httpd.exe
+To install it as a service:
+
+sh
+Copy
+Edit
+httpd.exe -k install
+Start the Apache service:
+
+sh
+Copy
+Edit
+net start Apache2.4
+Open a browser and visit http://localhost to verify.
+
+2. Install Tomcat Application Server
+Tomcat is required to run Java-based web applications.
+
+Steps to Install Tomcat:
+Download Tomcat
+
+Go to: https://tomcat.apache.org/download-10.cgi
+
+Download Windows Service Installer.
+
+Install Tomcat
+
+Run the installer.
+
+Set the installation path (e.g., C:\Tomcat).
+
+During installation, set:
+
+HTTP port: 8080 (default).
+
+Tomcat Administrator login credentials.
+
+Start Tomcat
+
+Go to C:\Tomcat\bin and run:
+
+sh
+Copy
+Edit
+startup.bat
+Open http://localhost:8080 in a browser to verify.
+
+3. Install MySQL
+MySQL is the database for storing web application data.
+
+Steps to Install MySQL:
+Download MySQL
+
+Go to: https://dev.mysql.com/downloads/installer/
+
+Download MySQL Installer.
+
+Install MySQL
+
+Choose "MySQL Server" and "MySQL Workbench".
+
+During installation, set:
+
+Root password.
+
+Port (default: 3306).
+
+Complete the installation.
+
+Start MySQL
+
+Open Command Prompt (Admin) and run:
+
+sh
+Copy
+Edit
+net start MySQL80
+To verify, log in:
+
+sh
+Copy
+Edit
+mysql -u root -p
+4. Install PHP and Configure with Apache
+PHP is required for dynamic web applications.
+
+Steps to Install PHP:
+Download PHP
+
+Go to: https://windows.php.net/download
+
+Download Thread Safe version.
+
+Extract and Configure PHP
+
+Extract it to C:\php.
+
+Rename php.ini-development to php.ini.
+
+Edit php.ini, uncomment:
+
+ini
+Copy
+Edit
+extension_dir = "C:\php\ext"
+extension=mysqli
+Configure Apache to Work with PHP
+
+Open C:\Apache24\conf\httpd.conf.
+
+Add the following at the end:
+
+bash
+Copy
+Edit
+LoadModule php_module "C:/php/php8apache2_4.dll"
+AddType application/x-httpd-php .php
+PHPIniDir "C:/php"
+Restart Apache:
+
+sh
+Copy
+Edit
+net stop Apache2.4
+net start Apache2.4
+Test PHP
+
+Create a file C:\Apache24\htdocs\info.php:
+
+php
+Copy
+Edit
+<?php phpinfo(); ?>
+Open http://localhost/info.php in a browser.
+
+5. Configure MySQL with PHP
+Edit php.ini
+
+Uncomment:
+
+ini
+Copy
+Edit
+extension=mysqli
+Restart Apache
+
+sh
+Copy
+Edit
+net stop Apache2.4
+net start Apache2.4
+Verify MySQL Connection
+
+Create C:\Apache24\htdocs\dbtest.php:
+
+php
+Copy
+Edit
+<?php
+$conn = new mysqli("localhost", "root", "yourpassword", "testdb");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+Open http://localhost/dbtest.php in a browser.
+
+Final Verification
+Apache: Open http://localhost
+
+Tomcat: Open http://localhost:8080
+
+PHP: Open http://localhost/info.php
+
+MySQL: Run mysql -u root -p
+
+PHP-MySQL: Open http://localhost/dbtest.php
+
+Once everything is working, your system is ready for web development! 🚀
+
+
+
+
+
+
+
